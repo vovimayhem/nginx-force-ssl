@@ -1,0 +1,15 @@
+version: "2.4"
+
+services:
+  web:
+    image: vovimayhem/nginx-force-ssl-demo:latest
+    build:
+      context: .
+    ports:
+    - ${NGINX_FORCE_SSL_DEMO_WEB_PORT:-80}:80
+    volumes:
+    - ./bin/entrypoint.sh:/bin/entrypoint.sh
+    - ./config/nginx.conf:/etc/nginx/example.conf
+    - ./index.html:/usr/share/nginx/html/index.html
+    environment:
+      FORCE_SSL: ${FORCE_SSL:-false}

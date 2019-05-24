@@ -1,5 +1,8 @@
 # Nginx conditional HTTPS redirection
 
+An online version is available at:
+- http://ancient-taiga-32245.herokuapp.com (Should redirect to HTTPS)
+- https://ancient-taiga-32245.herokuapp.com (Should not redirect :))
 
 ## Run locally
 

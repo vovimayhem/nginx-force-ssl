@@ -24,17 +24,15 @@ apply_env_to_nginx_conf() {
   echo " Done!"
 }
 
-# 2: If the command was 'start', or none was given, start nginx:
-if [ -z "$1" ] || [ "$1" == 'start' ]
-then
-  # 2.1: Generate the nginx configuration valid for this instance:
-  apply_env_to_nginx_conf
+# 2: Generate the nginx configuration valid for this instance:
+apply_env_to_nginx_conf
 
-  # 2.2: Replace the given command with the nginx command:
-  set -- nginx -c /tmp/nginx.conf -g 'daemon off;'
-fi
 
-if [ "$1" == 'nginx' ]; then echo "Starting the app's Nginx instance..."; fi;
+# 3: Set the command to be executed:
+set -- nginx -c /tmp/nginx.conf -g 'daemon off;';
 
-# 3: Execute the given or default command:
+# 4: Notify that NGinx will start:
+echo "Starting the app's Nginx instance...";
+
+# 5: Execute the given or default command:
 exec "$@"
